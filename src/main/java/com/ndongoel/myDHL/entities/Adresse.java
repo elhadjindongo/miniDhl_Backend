@@ -4,7 +4,7 @@
 /****** Project: myDHL *********************/
 /****************************************************/
 
-package com.ndongoel.myDHL.models;
+package com.ndongoel.myDHL.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -4,7 +4,7 @@
 /****** Project: myDHL *********************/
 /****************************************************/
 
-package com.ndongoel.myDHL.models;
+package com.ndongoel.myDHL.entities;
 
 import com.ndongoel.myDHL.entities.SousDivision;
 import lombok.AllArgsConstructor;
