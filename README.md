@@ -10,6 +10,6 @@ Restfull SpringBoot Java Backend
 
 #ENGLISH
 
-1-Visit the architecture folder where you can find the architecture of classes with UML classes. You can find all the entites/classes/models, DAO's classes, services classes & all Rest Controllers
+1-Visit the architecture folder where you can find the architecture of classes modelized with UML. You can find all the entites/classes/models, repositories, services,& all Rest Controllers
 
 2-H2 database was used so you can clone the project & excecute it whithout any neccessary configuration.
