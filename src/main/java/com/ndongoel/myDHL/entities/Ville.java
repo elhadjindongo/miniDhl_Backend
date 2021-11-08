@@ -15,15 +15,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-@Entity
+@Embeddable
 public class Ville implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(length = 120)
     private String nom;
-    private int codePostal;
-
-    @ManyToOne
-    private SousDivision sousDivision;
+    @Column(name = "code_postal", length = 15)
+    private String codePostal;
 }

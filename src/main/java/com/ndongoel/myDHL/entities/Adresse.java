@@ -1,8 +1,8 @@
-/********************************************************/
-/****** Created by El Hadji M. NDONGO ******************/
-/****** on 11/5/2021 ************************************/
+/**********************************************/
+/****** Created by El Hadji M. NDONGO ********/
+/****** on 11/5/2021 ************************/
 /****** Project: myDHL *********************/
-/****************************************************/
+/******************************************/
 
 package com.ndongoel.myDHL.entities;
 
@@ -18,8 +18,24 @@ import java.io.Serializable;
 public class Adresse implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "adress_line")
+    @Column(name = "adresse")
     private String adressLine;
-    @ManyToOne
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(
+                    name = "nom",
+                    column = @Column(name = "ville")
+            )
+    })
     private Ville ville;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(
+                    name = "nom",
+                    column = @Column(name = "sous_division")
+            )
+    })
+    private SousDivision sousDivision;
+    @Embedded
+    private Pays pays;
 }

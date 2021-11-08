@@ -1,10 +1,10 @@
 package com.ndongoel.myDHL.models;
 
 public enum Region {
-    WEST_AFRICA,
-    CENTRAL_AFRICA,
-    WEST_EUROPE,
-    SOUTH_ASIA,
-    NORTH_AMERICA,
-    MIDDLE_EAST
+    OUEST_AFRIQUE,
+    AFRIQUE_CENTRALE,
+    OUEST_EUROPE,
+    ASIA_SUD,
+    NORT_AMERIQUE,
+    PROCHE_ORIENT
 }

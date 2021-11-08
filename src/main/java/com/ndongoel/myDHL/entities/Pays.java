@@ -12,17 +12,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-@Entity
-public class Pays implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(length = 120)
+@Embeddable
+public class Pays {
+    @Column(length = 120,name = "pays")
     private String nom;
-    @Column(length = 10)
-    private String code;
+    @Column(length = 10,name = "code_iso")
+    private String codeIso; //code iso-3166-1 Alpha 3
+    @Enumerated(EnumType.STRING)
     private Region region;
 }

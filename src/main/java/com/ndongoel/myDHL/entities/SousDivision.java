@@ -10,21 +10,15 @@ import com.ndongoel.myDHL.models.Decoupage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-@Entity
-public class SousDivision implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Embeddable
+public class SousDivision {
+    @Enumerated(EnumType.STRING)
     private Decoupage decoupage;
     @Column(length = 120)
     private String nom;
-    @Column(length = 10)
+    @Column(length = 15)
     private String code;
-    @ManyToOne
-    private Pays pays;
 }
