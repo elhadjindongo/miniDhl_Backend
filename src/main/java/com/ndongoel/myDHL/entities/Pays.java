@@ -10,10 +10,11 @@ import com.ndongoel.myDHL.models.Region;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor @ToString
 @Embeddable
 public class Pays {
     @Column(length = 120,name = "pays")

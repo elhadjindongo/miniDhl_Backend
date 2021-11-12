@@ -9,11 +9,12 @@ package com.ndongoel.myDHL.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor @ToString
 @Entity
 public class Adresse implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
