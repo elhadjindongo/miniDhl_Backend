@@ -8,7 +8,9 @@ package com.ndongoel.myDHL.config;
 
 import com.ndongoel.myDHL.entities.*;
 import com.ndongoel.myDHL.models.Decoupage;
+import com.ndongoel.myDHL.models.Genre;
 import com.ndongoel.myDHL.models.Region;
+import com.ndongoel.myDHL.repositories.ClientRepository;
 import com.ndongoel.myDHL.repositories.EmployeRepository;
 import com.ndongoel.myDHL.repositories.EntrepotRepository;
 import org.slf4j.Logger;
@@ -81,4 +83,48 @@ public class LoadDB {
         };
     }
 
+    @Bean
+    CommandLineRunner initEnvoie(ClientRepository clientRepository) {
+        return args -> {
+            Pays can = new Pays("Canada", "CAN", Region.NORT_AMERIQUE);
+            SousDivision provinceOn = new SousDivision(Decoupage.PROVINCE, "Ontario", "ON");
+            Ville ot = new Ville("Ottowa", "K1Z 7B5");
+
+            Adresse adresseClient1 = new Adresse(null, "37 High Hill", ot, provinceOn, can);
+            Adresse adresseClient2 = new Adresse(null, "8 Prince Eduard street", ot, provinceOn, can);
+            Adresse adresseClient3 = new Adresse(null, "98 McArthy Residence ", ot, provinceOn, can);
+
+            Personne personne1 = new Personne();
+            personne1.setNom("Steller");
+            personne1.setPrenom("Patricia");
+            personne1.setNumeroSecu(897654112);
+            personne1.setGenre(Genre.FEMME);
+            personne1.setAdresse(adresseClient1);
+            personne1.setEmail("patSteller2020@gmail.com");
+            personne1.setTelephone("986-346-2006");
+
+            Personne personne2 = new Personne();
+            personne2.setNom("Baldwin");
+            personne2.setPrenom("Jonathan");
+            personne2.setGenre(Genre.HOMME);
+            personne2.setNumeroSecu(348901923);
+            personne2.setAdresse(adresseClient2);
+            personne2.setEmail("jhanty234@gmail.com");
+            personne2.setTelephone("519-646-2486");
+
+            Personne personne3 = new Personne();
+            personne3.setNom("Smallwood");
+            personne3.setPrenom("Amanda");
+            personne3.setGenre(Genre.FEMME);
+            personne3.setNumeroSecu(998556234);
+            personne3.setAdresse(adresseClient3);
+            personne3.setEmail("marrymarvin34@gmail.com");
+            personne3.setTelephone("789-345-2489");
+
+            clientRepository.save(personne1);
+            clientRepository.save(personne2);
+            clientRepository.save(personne3);
+
+        };
+    }
 }
