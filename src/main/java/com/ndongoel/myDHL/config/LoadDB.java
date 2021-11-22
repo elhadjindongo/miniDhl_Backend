@@ -13,18 +13,21 @@ import com.ndongoel.myDHL.models.Region;
 import com.ndongoel.myDHL.repositories.ClientRepository;
 import com.ndongoel.myDHL.repositories.EmployeRepository;
 import com.ndongoel.myDHL.repositories.EntrepotRepository;
+import com.ndongoel.myDHL.repositories.ExpeditionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Date;
+
 @Configuration
 public class LoadDB {
     private static final Logger log = LoggerFactory.getLogger(LoadDB.class);
 
     @Bean
-    CommandLineRunner initEntrepotsEmploye(EntrepotRepository entrepotRepository, EmployeRepository employeRepository) {
+    CommandLineRunner init(EntrepotRepository entrepotRepository, EmployeRepository employeRepository, ClientRepository clientRepository, ExpeditionRepository expeditionRepository) {
 
         return args -> {
 
@@ -52,6 +55,9 @@ public class LoadDB {
             Adresse adresse10 = new Adresse(null, "Mermoze, Villa N° 37", dk, regionDk, sen);
             Adresse adresse11 = new Adresse(null, "1193 Locust Court", red, etatCal, usa);
             Adresse adresse12 = new Adresse(null, "357 Byers Lane", ot, provinceOn, can);
+            Adresse adresseClient13 = new Adresse(null, "37 High Hill", ot, provinceOn, can);
+            Adresse adresseClient14 = new Adresse(null, "8 Prince Eduard street", ot, provinceOn, can);
+            Adresse adresseClient15 = new Adresse(null, "98 McArthy Residence ", ot, provinceOn, can);
 
             Entrepot entrepot1 = new Entrepot(null, "Diayma", 1000, adresse1, null);
             Entrepot entrepot2 = new Entrepot(null, "Buy more", 5200, adresse2, null);
@@ -80,26 +86,13 @@ public class LoadDB {
             employeRepository.save(employe7);
             employeRepository.save(employe8);
             employeRepository.save(employe9);
-        };
-    }
-
-    @Bean
-    CommandLineRunner initEnvoie(ClientRepository clientRepository) {
-        return args -> {
-            Pays can = new Pays("Canada", "CAN", Region.NORT_AMERIQUE);
-            SousDivision provinceOn = new SousDivision(Decoupage.PROVINCE, "Ontario", "ON");
-            Ville ot = new Ville("Ottowa", "K1Z 7B5");
-
-            Adresse adresseClient1 = new Adresse(null, "37 High Hill", ot, provinceOn, can);
-            Adresse adresseClient2 = new Adresse(null, "8 Prince Eduard street", ot, provinceOn, can);
-            Adresse adresseClient3 = new Adresse(null, "98 McArthy Residence ", ot, provinceOn, can);
 
             Personne personne1 = new Personne();
             personne1.setNom("Steller");
             personne1.setPrenom("Patricia");
             personne1.setNumeroSecu(897654112);
             personne1.setGenre(Genre.FEMME);
-            personne1.setAdresse(adresseClient1);
+            personne1.setAdresse(adresseClient13);
             personne1.setEmail("patSteller2020@gmail.com");
             personne1.setTelephone("986-346-2006");
 
@@ -108,7 +101,7 @@ public class LoadDB {
             personne2.setPrenom("Jonathan");
             personne2.setGenre(Genre.HOMME);
             personne2.setNumeroSecu(348901923);
-            personne2.setAdresse(adresseClient2);
+            personne2.setAdresse(adresseClient14);
             personne2.setEmail("jhanty234@gmail.com");
             personne2.setTelephone("519-646-2486");
 
@@ -117,7 +110,7 @@ public class LoadDB {
             personne3.setPrenom("Amanda");
             personne3.setGenre(Genre.FEMME);
             personne3.setNumeroSecu(998556234);
-            personne3.setAdresse(adresseClient3);
+            personne3.setAdresse(adresseClient15);
             personne3.setEmail("marrymarvin34@gmail.com");
             personne3.setTelephone("789-345-2489");
 
@@ -125,6 +118,29 @@ public class LoadDB {
             clientRepository.save(personne2);
             clientRepository.save(personne3);
 
+            //Expedition
+            Courrier courrier1 = new Courrier();
+            courrier1.setPoidsEnKg(0.3);
+            courrier1.setDateDeDepot(new Date());
+            courrier1.setStatut(Statut.EXPEDITION_EN_COURS);
+            courrier1.setDestinataire(personne1);
+            courrier1.setEntrepotDeDepot(entrepot3);
+            courrier1.setEntrepotDeDestination(entrepot1);
+
+            Colis colis1 = new Colis();
+            colis1.setPoidsEnKg(3.34);
+            colis1.setDateDeDepot(new Date());
+            colis1.setStatut(Statut.EXPEDITION_EN_COURS);
+            colis1.setDestinataire(personne2);
+            colis1.setEntrepotDeDepot(entrepot3);
+            colis1.setEntrepotDeDestination(entrepot2);
+            colis1.setHauteurEnMetre(2.9);
+            colis1.setLargeurEnMetre(2.5);
+            colis1.setLongueurEnMetre(1.5);
+
+            expeditionRepository.save(courrier1);
+            expeditionRepository.save(colis1);
         };
     }
+
 }

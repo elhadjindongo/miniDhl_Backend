@@ -14,7 +14,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Entity @Inheritance
 @DiscriminatorColumn(name = "type_client")
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public abstract class Client implements Serializable {
